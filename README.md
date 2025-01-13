@@ -30,6 +30,13 @@ To run tests, run the following commands from the root directory:
   dotnet test
 ```
 
+## Test Report
+To generate test report run
+```bash
+  dotnet test --logger "trx;LogFileName=test-results.trx"
+```
+It will generate the test report file in root directory called "test-results.trx". It's viewable for example in Visual Studio.
+
 ## Project structure
 I have based my project on Page Object Model, where each next step in registration form is resembled by seperate Page class in directory:
 ```bash
@@ -51,7 +58,7 @@ The step definition appear in file:
  ```
  It's where the underlying C-Sharp code gets executed.
  
- I based my project on Java and Maven due to easy and fast setup. Also I find it to be simmilar to C# (which has been listed in requirements for the job) but I have used Java more lately and felt more comfortable with it as for right now. As for Selenium I used it because I'm familar with it and from what I gathered during the interview it's also in use in your company.
+ I based my project on C# as it's listed under job requirement and because I had some previous experience with it. As for Selenium I used it because I'm familar with it and from what I gathered during the interview it's also in use in your company.
  
  
  
