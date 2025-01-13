@@ -6,6 +6,8 @@ namespace GiganciProgramowaniaTest.Pages
 {
     public class RegistrationFifthPage
     {
+        private By agreementHeadingLoc = By.XPath("//div[@class='registration-form-agreement-content-thanks mb-24']/span");
+        private By stepsLoc = By.ClassName("feature_registration-menu__item-icon");
 
         public bool IsStepsUpToFifthCompleted()
         {
@@ -17,7 +19,7 @@ namespace GiganciProgramowaniaTest.Pages
                 // Wait until the steps are available
                 IList<IWebElement> steps = wait.Until(d =>
                 {
-                    var elements = d.FindElements(By.ClassName("feature_registration-menu__item-icon")).ToList();
+                    var elements = d.FindElements(stepsLoc).ToList();
                     if (elements != null && elements.Count > 2) // Ensure enough steps are present
                     {
                         return elements;
@@ -79,7 +81,7 @@ namespace GiganciProgramowaniaTest.Pages
                 // Wait until the agreement heading is available
                 IWebElement agreementHeading = wait.Until(d =>
                 {
-                    var element = d.FindElement(By.XPath("//div[@class='registration-form-agreement-content-thanks mb-24']/span"));
+                    var element = d.FindElement(agreementHeadingLoc);
                     if (element != null && element.Displayed)
                     {
                         return element;

@@ -74,6 +74,122 @@ namespace GiganciProgramowaniaTest.Features
         }
         
         [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify required fields")]
+        public void VerifyRequiredFields()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify required fields", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 4
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 5
+  testRunner.Given("I am on the first step of the Registration Form", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 6
+  testRunner.Then("I submit the form by clicking \'Dalej\' button once.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 7
+  testRunner.Then("Validation message \'Pole jest wymagane\' displays under each required field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 8
+  testRunner.Then("Form has not been submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 9
+  testRunner.Then("Customer remains at first step of registration form", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify e-mail format")]
+        public void VerifyE_MailFormat()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify e-mail format", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 12
+  this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 13
+   testRunner.Given("I am on the first step of the Registration Form", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 14
+   testRunner.Then("I fill email input with \'user#example.com\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 15
+   testRunner.Then("I submit the form by clicking \'Dalej\' button once.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 16
+   testRunner.Then("Validation message \'Nieprawidłowy adres e-mail\' displays under \'Adres e-mail\' inp" +
+                        "ut.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 17
+   testRunner.And("Form has not been submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 18
+   testRunner.And("Customer remains at first step of registration form", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify phone format")]
+        public void VerifyPhoneFormat()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify phone format", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 21
+  this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 22
+   testRunner.Given("I am on the first step of the Registration Form", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 23
+   testRunner.Then("I fill phone number input with \'12345665\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 24
+   testRunner.Then("I submit the form by clicking \'Dalej\' button once.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 25
+   testRunner.Then("Validation message \'Niepoprawny numer telefonu.\' displays under \'Numer kontaktowy" +
+                        "\' input.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 26
+   testRunner.And("Form has not been submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 27
+   testRunner.And("Customer remains at first step of registration form", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify correct first step from submission with correct data")]
         public void VerifyCorrectFirstStepFromSubmissionWithCorrectData()
         {
@@ -121,7 +237,93 @@ namespace GiganciProgramowaniaTest.Features
    testRunner.And("In the navigation first step gets completed and its icon turns into tick icon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 41
-   testRunner.And("In the navigiation second step is displayed as active", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+   testRunner.And("In the navigation second step is displayed as active", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify registration flow for online annual courses")]
+        public void VerifyRegistrationFlowForOnlineAnnualCourses()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify registration flow for online annual courses", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 43
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 44
+  testRunner.Given("I am on the first step of the Registration Form", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 45
+  testRunner.Then("I fill imie opiekuna input with \'Artur\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 46
+  testRunner.Then("I fill email input with \'karolgiganci+fakedata80696@gmail.com\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 47
+  testRunner.Then("I fill phone number input with \'123456651\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 48
+  testRunner.Then("I fill year of birth input with \'2005\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 49
+  testRunner.Then("I click Statute Agreement checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 50
+  testRunner.Then("I click Advertisement Agreement checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 51
+  testRunner.Then("I submit the form by clicking \'Dalej\' button once.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 52
+  testRunner.And("Customer moves to second step of registration form", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 53
+  testRunner.Then("I click on tile with the name of \'PROGRAMOWANIE\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 54
+  testRunner.And("I click on tile called \'Online\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 55
+  testRunner.And("I select button with the name of \'Roczne kursy z programowania\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 56
+  testRunner.Then("I find course \'Pierwsze kroki w programowaniu(kurs z elementami AI) ONLINE\' and c" +
+                        "lick on Wybierz", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 57
+  testRunner.And("From the list of dates I select any that does not contain text \'Zapisy na listę r" +
+                        "ezerwową\'.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 58
+  testRunner.Then("I fill imie ucznia input with \'Maciej\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 59
+  testRunner.Then("I fill nazwisko ucznia input with \'Testowy\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 60
+  testRunner.Then("I fill nazwisko opiekuna input with \'Testowy\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 61
+  testRunner.Then("I fill kod pocztowy input with \'26-900\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 62
+  testRunner.And("I click Zapisz Dziecko button to submit the form", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 63
+  testRunner.Then("I am at Sign Agreement step", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 64
+  testRunner.And("In the navigation all steps up to agreement are completed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

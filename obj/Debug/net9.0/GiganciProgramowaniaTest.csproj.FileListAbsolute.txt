@@ -113,3 +113,4 @@ C:\git repos\GigangciProgramowaniaZadanieCSharp\GiganciProgramowaniaTest\obj\Deb
 C:\git repos\GigangciProgramowaniaZadanieCSharp\GiganciProgramowaniaTest\obj\Debug\net9.0\GiganciProgramowaniaTest.pdb
 C:\git repos\GigangciProgramowaniaZadanieCSharp\GiganciProgramowaniaTest\obj\Debug\net9.0\GiganciProgramowaniaTest.genruntimeconfig.cache
 C:\git repos\GigangciProgramowaniaZadanieCSharp\GiganciProgramowaniaTest\obj\Debug\net9.0\ref\GiganciProgramowaniaTest.dll
+C:\git repos\GigangciProgramowaniaZadanieCSharp\GiganciProgramowaniaTest\obj\Debug\net9.0\GiganciProgramowaniaTest.sourcelink.json

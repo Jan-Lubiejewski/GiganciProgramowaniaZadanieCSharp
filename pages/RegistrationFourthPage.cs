@@ -7,39 +7,41 @@ namespace GiganciProgramowaniaTest.Pages
     public class RegistrationFourthPage
     {
         // Locators
-        private IWebElement? submitButton;
-        private IWebElement? firstName;
-        private IWebElement? lastName;
-        private IWebElement? parentLastName;
-        private IWebElement? zipCode;
+        private By submitButtonLoc = By.Id("registration-step-submit");
+        private By registrationButtonsLoc = By.ClassName("registration-btn");
+        private By registrationVacanciesLoc = By.ClassName("timetable__date-places-info");
+        private By firstNameLoc = By.Name("student_firstname");
+        private By lastNameLoc = By.Name("student_lastname");
+        private By parentLastNameLoc = By.Name("lastname");
+        private By zipCodeLoc = By.Name("zip_code");
 
         public void ClickSubmitButton()
         {
-            submitButton = Drive.GetDriver().FindElement(By.Id("registration-step-submit"));
+            IWebElement submitButton = Drive.GetDriver().FindElement(submitButtonLoc);
             submitButton.Click();
         }
 
         public void InputZipCode(string code)
         {
-            zipCode = Drive.GetDriver().FindElement(By.Name("zip_code"));
+            IWebElement zipCode = Drive.GetDriver().FindElement(zipCodeLoc);
             zipCode.SendKeys(code);
         }
 
         public void InputParentLastName(string name)
         {
-            parentLastName = Drive.GetDriver().FindElement(By.Name("lastname"));
+            IWebElement parentLastName = Drive.GetDriver().FindElement(parentLastNameLoc);
             parentLastName.SendKeys(name);
         }
 
         public void InputStudentLastName(string name)
         {
-            lastName = Drive.GetDriver().FindElement(By.Name("student_lastname"));
+            IWebElement lastName = Drive.GetDriver().FindElement(lastNameLoc);
             lastName.SendKeys(name);
         }
 
         public void InputStudentFirstName(string name)
         {
-            firstName = Drive.GetDriver().FindElement(By.Name("student_firstname"));
+            IWebElement firstName = Drive.GetDriver().FindElement(firstNameLoc);
             firstName.SendKeys(name);
         }
         public void SelectCourseDateNotInStandbyList()
@@ -52,7 +54,7 @@ namespace GiganciProgramowaniaTest.Pages
                 // Wait until the list of registration buttons and vacancies are available
                 IList<IWebElement> registrationButtons = wait.Until(d =>
                 {
-                    var buttons = d.FindElements(By.ClassName("registration-btn")).ToList();
+                    var buttons = d.FindElements(registrationButtonsLoc).ToList();
                     if (buttons != null && buttons.Count > 0)
                     {
                         return buttons;
@@ -62,7 +64,7 @@ namespace GiganciProgramowaniaTest.Pages
 
                 IList<IWebElement> registrationVacancies = wait.Until(d =>
                 {
-                    var vacancies = d.FindElements(By.ClassName("timetable__date-places-info")).ToList();
+                    var vacancies = d.FindElements(registrationVacanciesLoc).ToList();
                     if (vacancies != null && vacancies.Count > 0)
                     {
                         return vacancies;
@@ -89,8 +91,8 @@ namespace GiganciProgramowaniaTest.Pages
                     }
 
                     // Re-find the elements in case the DOM has changed after clicking
-                    registrationButtons = driver.FindElements(By.ClassName("registration-btn")).ToList();
-                    registrationVacancies = driver.FindElements(By.ClassName("timetable__date-places-info")).ToList();
+                    registrationButtons = driver.FindElements(registrationButtonsLoc).ToList();
+                    registrationVacancies = driver.FindElements(registrationVacanciesLoc).ToList();
                 }
             }
             catch (WebDriverTimeoutException e)

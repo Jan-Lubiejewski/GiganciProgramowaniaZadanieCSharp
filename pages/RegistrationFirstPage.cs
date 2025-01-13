@@ -6,56 +6,56 @@ namespace GiganciProgramowaniaTest.Pages
     public class RegistrationFirstPage
     {
         // Locators
-        private IWebElement? form;
-        private IWebElement? parentName;
-        private IWebElement? parentNameError;
-        private IWebElement? email;
-        private IWebElement? emailError;
-        private IWebElement? phoneNumber;
-        private IWebElement? phoneNumberError;
-        private IWebElement? birthYear;
-        private IWebElement? birthYearError;
-        private IWebElement? statueAgreed;
-        private IWebElement? statueAgreedError;
-        private IWebElement? advertisementAgreed;
-        private IWebElement? advertisementAgreedError;
-        private IWebElement? alertMessage;
-        private IWebElement? dalejButton;
+        private By formLoc = By.Id("submit-payment");
+        private By parentNameLoc = By.Name("parentName");
+        private By parentNameErrorLoc = By.XPath("//input[@name='parentName']/ancestor::div[@class='formControls']//span[@class='formValidation']");
+        private By emailLoc = By.Name("email");
+        private By emailErrorLoc = By.XPath("//input[@name='email']/ancestor::div[@class='formControls']//span[@class='formValidation']");
+        private By phoneNumberLoc = By.Name("phoneNumber");
+        private By phoneNumberErrorLoc = By.XPath("//input[@name='phoneNumber']/ancestor::div[@class='formControls']//span[@class='formValidation']");
+        private By birthYearLoc = By.Name("birthYear");
+        private By birthYearErrorLoc = By.XPath("//input[@name='birthYear']/ancestor::div[@class='formControls']//span[@class='formValidation']");
+        private By statueAgreedLoc = By.Id("statuteAgreed");
+        private By statueAgreedErrorLoc = By.XPath("//input[@id='statuteAgreed']/parent::div//div[@class='formValidation']//span[@class='formError']");
+        private By advertisementAgreedLoc = By.Id("advertisementAgreed");
+        private By advertisementAgreedErrorLoc = By.XPath("//input[@id='advertisementAgreed']/parent::div//div[@class='formValidation']//span[@class='formError']");
+        private By alertMessageLoc = By.XPath("//h4[@class='alert-heading']");
+        private By dalejButtonLoc = By.Id("agreement-step-submit");
 
         // Constructor to initialize the web elements manually
 
         // Check if the advertisement agreed checkbox is selected
         public void CheckAdvertisementAgreed()
         {
-            advertisementAgreed = Drive.GetDriver().FindElement(By.Id("advertisementAgreed"));
+            IWebElement advertisementAgreed = Drive.GetDriver().FindElement(advertisementAgreedLoc);
             ((IJavaScriptExecutor)Drive.GetDriver()).ExecuteScript("arguments[0].click();", advertisementAgreed);
         }
 
         // Check if the statue agreed checkbox is selected
         public void CheckStatueAgreedCheckbox()
         {
-            statueAgreed = Drive.GetDriver().FindElement(By.Id("statuteAgreed"));
+            IWebElement statueAgreed = Drive.GetDriver().FindElement(statueAgreedLoc);
             ((IJavaScriptExecutor)Drive.GetDriver()).ExecuteScript("arguments[0].click();", statueAgreed);
         }
 
         // Input the birth year
         public void InputBirthYear(string year)
         {
-            birthYear = Drive.GetDriver().FindElement(By.Name("birthYear"));
+            IWebElement birthYear = Drive.GetDriver().FindElement(birthYearLoc);
             birthYear.SendKeys(year);
         }
 
         // Input the parent name
         public void InputParentName(string name)
         {
-            parentName = Drive.GetDriver().FindElement(By.Name("parentName"));
+            IWebElement parentName = Drive.GetDriver().FindElement(parentNameLoc);
             parentName.SendKeys(name);
         }
 
         // Check if the phone format error appears
         public bool IsErrorPhoneFormatAppears()
         {
-            phoneNumberError = Drive.GetDriver().FindElement(By.XPath("//input[@name='phoneNumber']/ancestor::div[@class='formControls']//span[@class='formValidation']"));
+            IWebElement phoneNumberError = Drive.GetDriver().FindElement(phoneNumberErrorLoc);
             string expectedText = "Niepoprawny numer telefonu. Numer powinien zawierać 9 cyfr, z opcjonalnym kierunkowym +48 lub +380 na początku.";
             return phoneNumberError.Displayed && phoneNumberError.Text.Equals(expectedText);
         }
@@ -63,14 +63,14 @@ namespace GiganciProgramowaniaTest.Pages
         // Input the phone number
         public void InputPhoneNumber(string phone)
         {
-            phoneNumber = Drive.GetDriver().FindElement(By.Name("phoneNumber"));
+            IWebElement phoneNumber = Drive.GetDriver().FindElement(phoneNumberLoc);
             phoneNumber.SendKeys(phone);
         }
 
         // Check if the email format error appears
         public bool IsErrorEmailFormatAppears()
         {
-            emailError = Drive.GetDriver().FindElement(By.XPath("//input[@name='email']/ancestor::div[@class='formControls']//span[@class='formValidation']"));
+            IWebElement emailError = Drive.GetDriver().FindElement(emailErrorLoc);
             string expectedText = "Nieprawidłowy adres e-mail";
             return emailError.Displayed && emailError.Text.Equals(expectedText);
         }
@@ -78,14 +78,14 @@ namespace GiganciProgramowaniaTest.Pages
         // Input the email
         public void InputEmail(string mail)
         {
-            email = Drive.GetDriver().FindElement(By.Name("email"));
+            IWebElement email = Drive.GetDriver().FindElement(emailLoc);
             email.SendKeys(mail);
         }
 
         // Check if we are still at the first registration page
         public bool IsRemainAtFirstRegistrationPage()
         {
-            form = Drive.GetDriver().FindElement(By.Id("submit-payment"));
+            IWebElement form = Drive.GetDriver().FindElement(formLoc);
             string expectedUrl = "https://devtest.giganciprogramowania.edu.pl/zapisz-sie";
             string currentUrl = Drive.GetDriver().Url;
             return form.Displayed && currentUrl.Equals(expectedUrl);
@@ -94,26 +94,26 @@ namespace GiganciProgramowaniaTest.Pages
         // Check if the alert message is displayed
         public bool IsAlertMessageAppears()
         {
-            alertMessage = Drive.GetDriver().FindElement(By.XPath("//h4[@class='alert-heading']"));
+            IWebElement alertMessage = Drive.GetDriver().FindElement(alertMessageLoc);
             return alertMessage.Displayed;
         }
 
         // Check if the form has been submitted
         public bool IsFormSubmitted()
         {
-            form = Drive.GetDriver().FindElement(By.Id("submit-payment"));
+            IWebElement form = Drive.GetDriver().FindElement(formLoc);
             return !form.Displayed; // If form is not displayed, it means it's submitted
         }
 
         // Check if error messages appear under all fields
         public bool IsErrorMessageAppearsUnderAllFields()
         {
-            parentNameError = Drive.GetDriver().FindElement(By.XPath("//input[@name='parentName']/ancestor::div[@class='formControls']//span[@class='formValidation']"));
-            emailError = Drive.GetDriver().FindElement(By.XPath("//input[@name='email']/ancestor::div[@class='formControls']//span[@class='formValidation']"));
-            phoneNumberError = Drive.GetDriver().FindElement(By.XPath("//input[@name='phoneNumber']/ancestor::div[@class='formControls']//span[@class='formValidation']"));
-            birthYearError = Drive.GetDriver().FindElement(By.XPath("//input[@name='birthYear']/ancestor::div[@class='formControls']//span[@class='formValidation']"));
-            statueAgreedError = Drive.GetDriver().FindElement(By.XPath("//input[@id='statuteAgreed']/parent::div//div[@class='formValidation']//span[@class='formError']"));
-            advertisementAgreedError = Drive.GetDriver().FindElement(By.XPath("//input[@id='advertisementAgreed']/parent::div//div[@class='formValidation']//span[@class='formError']"));
+            IWebElement parentNameError = Drive.GetDriver().FindElement(parentNameErrorLoc);
+            IWebElement emailError = Drive.GetDriver().FindElement(emailErrorLoc);
+            IWebElement phoneNumberError = Drive.GetDriver().FindElement(phoneNumberErrorLoc);
+            IWebElement birthYearError = Drive.GetDriver().FindElement(birthYearErrorLoc);
+            IWebElement statueAgreedError = Drive.GetDriver().FindElement(statueAgreedErrorLoc);
+            IWebElement advertisementAgreedError = Drive.GetDriver().FindElement(advertisementAgreedErrorLoc);
 
             var errorMessages = new List<IWebElement>
             {
@@ -140,7 +140,7 @@ namespace GiganciProgramowaniaTest.Pages
         // Click the "Dalej" button (next)
         public void ClickDalej()
         {
-            dalejButton = Drive.GetDriver().FindElement(By.Id("agreement-step-submit"));
+            IWebElement dalejButton = Drive.GetDriver().FindElement(dalejButtonLoc);
             dalejButton.Click();
         }
     }

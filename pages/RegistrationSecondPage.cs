@@ -7,9 +7,11 @@ namespace GiganciProgramowaniaTest.Pages
     public class RegistrationSecondPage
     {
         // Locators
-        private IWebElement? formHeading;
-        private List<IWebElement>? steps;
-        private List<IWebElement>? courseTopic;
+        private By formHeadingLoc = By.XPath("//span[text()='Wybierz tematykę kursu']");
+        private By stepsLoc = By.ClassName("feature_registration-menu__item-icon");
+        private By courseTopicLoc = By.ClassName("js-kind-group");
+        private By onlineButtonLoc = By.XPath("//button[text()='Online']");
+        private By courseTypeLoc = By.ClassName("sub-kind-selector--button");
 
         public void ClickRoczneKursyZProgramowania()
         {
@@ -21,7 +23,7 @@ namespace GiganciProgramowaniaTest.Pages
                 // Wait until the list of buttons is available
                 IList<IWebElement> courseType = wait.Until(d =>
                 {
-                    var elements = d.FindElements(By.ClassName("sub-kind-selector--button")).ToList();
+                    var elements = d.FindElements(courseTypeLoc).ToList();
                     if (elements != null && elements.Count > 0)
                     {
                         return elements;
@@ -55,7 +57,7 @@ namespace GiganciProgramowaniaTest.Pages
                 // Wait until the button is visible and enabled
                 IWebElement onlineButton = wait.Until(d =>
                 {
-                    IWebElement element = d.FindElement(By.XPath("//button[text()='Online']"));
+                    IWebElement element = d.FindElement(onlineButtonLoc);
                     if (element.Displayed && element.Enabled)
                     {
                         return element;
@@ -76,7 +78,7 @@ namespace GiganciProgramowaniaTest.Pages
 
         public void ClickProgramowanie()
         {
-            courseTopic = Drive.GetDriver().FindElements(By.ClassName("js-kind-group")).ToList();
+            List<IWebElement> courseTopic = Drive.GetDriver().FindElements(courseTopicLoc).ToList();
             courseTopic[2].Click(); // 3rd button is Programowanie
         }
 
@@ -86,10 +88,10 @@ namespace GiganciProgramowaniaTest.Pages
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             try
             {
-                wait.Until(d => d.FindElement(By.XPath("//span[text()='Wybierz tematykę kursu']")).Displayed);
+                wait.Until(d => d.FindElement(formHeadingLoc).Displayed);
 
                 // Finds the element after the wait
-                formHeading = driver.FindElement(By.XPath("//span[text()='Wybierz tematykę kursu']"));
+                IWebElement formHeading = driver.FindElement(formHeadingLoc);
 
                 return formHeading.Displayed;
             }
@@ -101,7 +103,7 @@ namespace GiganciProgramowaniaTest.Pages
 
         public bool IsFirstStepTicked()
         {
-            steps = Drive.GetDriver().FindElements(By.ClassName("feature_registration-menu__item-icon")).ToList();
+            List<IWebElement> steps = Drive.GetDriver().FindElements(stepsLoc).ToList();
             IWebElement firstStep = steps[0];
 
             // Retrieves the parent element that contains the information if the step is completed
@@ -118,7 +120,7 @@ namespace GiganciProgramowaniaTest.Pages
 
         public bool IsSecondStepActive()
         {
-            steps = Drive.GetDriver().FindElements(By.ClassName("feature_registration-menu__item-icon")).ToList();
+            List<IWebElement> steps = Drive.GetDriver().FindElements(stepsLoc).ToList();
             IWebElement secondStep = steps[1];
 
             // Retrieves parent element that contains class info if the class is active

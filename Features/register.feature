@@ -38,7 +38,7 @@ Feature: Registration Form
    Then I submit the form by clicking 'Dalej' button once.
    And Customer moves to second step of registration form
    And In the navigation first step gets completed and its icon turns into tick icon
-   And In the navigiation second step is displayed as active
+   And In the navigation second step is displayed as active
 
 Scenario: Verify registration flow for online annual courses
   Given I am on the first step of the Registration Form
