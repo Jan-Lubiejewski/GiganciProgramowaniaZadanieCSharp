@@ -11,17 +11,17 @@ The tests are based on the provided by Giganci Programowania test cases from Goo
 
 ## Dependencies and Setup
 To run the tests you have to have lates .NET 9.0 installed on your machine. You will also need Google Chrome browser:
-[.NET 9.0 installation](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
-[Google Chrome installation](https://www.google.com/chrome/)
+- [.NET 9.0 installation](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+- [Google Chrome installation](https://www.google.com/chrome/)
 
-The rest of the dependencies will get aquired via pom.xml maven configuration file automatically.
+The rest of the dependencies gets aquired via NuGet.
 ## Running Tests
 
 After clonning the reposistory you may need to run:
 ```bash
   dotnet restore
 ```
-This command will find the used NuGet packages and download them
+This command will find the used NuGet packages and download them.
 
 To run tests, run the following commands from the root directory:
 
