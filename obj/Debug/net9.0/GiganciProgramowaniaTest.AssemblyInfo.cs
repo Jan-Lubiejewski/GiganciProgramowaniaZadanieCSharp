@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GiganciProgramowaniaTest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5f763303ddc6b1f701d6151ec818c63141f7041a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+da563ee645086d0f31bd3da58d5e5f1c8066c6cd")]
 [assembly: System.Reflection.AssemblyProductAttribute("GiganciProgramowaniaTest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GiganciProgramowaniaTest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

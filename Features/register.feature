@@ -1,14 +1,15 @@
 Feature: Registration Form
 
- # Red alert at last <AND> block sometimes appears and sometimes it doesn't, explicit wait doesn't work here
+ # Red alert at last <AND> block doesn't appear here
  Scenario: Verify required fields
   Given I am on the first step of the Registration Form
   Then I submit the form by clicking 'Dalej' button once.
   Then Validation message 'Pole jest wymagane' displays under each required field
   Then Form has not been submitted
   Then Customer remains at first step of registration form
-  # Then Red colored alert appears with following text 'Prosimy uzupełnić wszystkie wymagane pola.'
+  #And Red colored alert appears with following text 'Prosimy uzupełnić wszystkie wymagane pola.'
 
+# Red alert at last <AND> block doesn't appear here
  Scenario: Verify e-mail format
   Given I am on the first step of the Registration Form
   Then I fill email input with 'user#example.com'
@@ -16,7 +17,7 @@ Feature: Registration Form
   Then Validation message 'Nieprawidłowy adres e-mail' displays under 'Adres e-mail' input.
   And Form has not been submitted
   And Customer remains at first step of registration form
-   # And Red colored alert appears with following text 'Prosimy uzupełnić wszystkie wymagane pola.'
+  #And Red colored alert appears with following text 'Prosimy uzupełnić wszystkie wymagane pola.'
 
  Scenario: Verify phone format
   Given I am on the first step of the Registration Form
@@ -25,7 +26,7 @@ Feature: Registration Form
   Then Validation message 'Niepoprawny numer telefonu.' displays under 'Numer kontaktowy' input.
   And Form has not been submitted
   And Customer remains at first step of registration form
-   #And Red colored alert appears with following text 'Prosimy uzupełnić wszystkie wymagane pola.'
+  And Red colored alert appears with following text 'Prosimy uzupełnić wszystkie wymagane pola.'
 
  Scenario: Verify correct first step from submission with correct data
   Given I am on the first step of the Registration Form
@@ -43,7 +44,7 @@ Feature: Registration Form
  Scenario: Verify registration flow for online annual courses
   Given I am on the first step of the Registration Form
   Then I fill imie opiekuna input with 'Artur'
-  Then I fill email input with 'karolgiganci+fakedata80696@gmail.com'
+  Then I fill email input with 'karolgiganci+fakieeeedata80696@gmail.com'
   Then I fill phone number input with '123456651'
   Then I fill year of birth input with '2005'
   Then I click Statute Agreement checkbox

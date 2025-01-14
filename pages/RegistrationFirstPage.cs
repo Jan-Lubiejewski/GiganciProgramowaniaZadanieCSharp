@@ -1,4 +1,5 @@
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using Utilities;
 
 namespace GiganciProgramowaniaTest.Pages
@@ -19,7 +20,7 @@ namespace GiganciProgramowaniaTest.Pages
         private By statueAgreedErrorLoc = By.XPath("//input[@id='statuteAgreed']/parent::div//div[@class='formValidation']//span[@class='formError']");
         private By advertisementAgreedLoc = By.Id("advertisementAgreed");
         private By advertisementAgreedErrorLoc = By.XPath("//input[@id='advertisementAgreed']/parent::div//div[@class='formValidation']//span[@class='formError']");
-        private By alertMessageLoc = By.XPath("//h4[@class='alert-heading']");
+        private By alertMessageLoc = By.XPath("//div[@id='system-message-container']/div[contains(@class, 'alert')]");
         private By dalejButtonLoc = By.Id("agreement-step-submit");
 
         // Check if the advertisement agreed checkbox is selected
@@ -94,8 +95,23 @@ namespace GiganciProgramowaniaTest.Pages
         // Check if the alert message is displayed
         public bool IsAlertMessageAppears()
         {
-            IWebElement alertMessage = Drive.GetDriver().FindElement(alertMessageLoc);
-            return alertMessage.Displayed;
+            IWebDriver driver = Drive.GetDriver();
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            try
+            {
+                // Wait until the element is available (displayed)
+                wait.Until(d => d.FindElement(alertMessageLoc).Displayed);
+
+                // Finds the element after the wait
+                IWebElement formHeading = driver.FindElement(alertMessageLoc);
+
+                return formHeading.Displayed;
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine(exp);
+                return false;
+            }
         }
 
         // Check if the form has been submitted
@@ -143,7 +159,9 @@ namespace GiganciProgramowaniaTest.Pages
         public void ClickDalej()
         {
             IWebElement dalejButton = Drive.GetDriver().FindElement(dalejButtonLoc);
-            dalejButton.Click();
+            // Execute JS script to scroll to and click dalej Button since the Selenium click may get intercepted
+            ((IJavaScriptExecutor)Drive.GetDriver()).ExecuteScript("arguments[0].scrollIntoView();", dalejButton);
+            ((IJavaScriptExecutor)Drive.GetDriver()).ExecuteScript("arguments[0].click();", dalejButton);
         }
     }
 }
