@@ -51,48 +51,56 @@ namespace GiganciProgramowaniaTest.Pages
 
             try
             {
-                // Wait until the list of registration buttons and vacancies are available
-                IList<IWebElement> registrationButtons = wait.Until(d =>
+                // Iterate through available course dates until one is found
+                while (true)
                 {
-                    var buttons = d.FindElements(registrationButtonsLoc).ToList();
-                    if (buttons != null && buttons.Count > 0)
+                    // Wait until the list of registration buttons and vacancies are available
+                    IList<IWebElement> registrationButtons = wait.Until(d =>
                     {
-                        return buttons;
-                    }
-                    throw new NoSuchElementException("No registration buttons found.");
-                });
+                        var buttons = d.FindElements(registrationButtonsLoc).ToList();
+                        if (buttons != null && buttons.Count > 0)
+                        {
+                            return buttons;
+                        }
+                        throw new NoSuchElementException("No registration buttons found.");
+                    });
 
-                IList<IWebElement> registrationVacancies = wait.Until(d =>
-                {
-                    var vacancies = d.FindElements(registrationVacanciesLoc).ToList();
-                    if (vacancies != null && vacancies.Count > 0)
+                    IList<IWebElement> registrationVacancies = wait.Until(d =>
                     {
-                        return vacancies;
-                    }
-                    throw new NoSuchElementException("No registration vacancy elements found.");
-                });
+                        var vacancies = d.FindElements(registrationVacanciesLoc).ToList();
+                        if (vacancies != null && vacancies.Count > 0)
+                        {
+                            return vacancies;
+                        }
+                        throw new NoSuchElementException("No registration vacancy elements found.");
+                    });
 
-                // Iterate through available course dates
-                for (int i = 0; i < registrationButtons.Count; i++)
-                {
-                    // Re-find the elements to avoid stale element reference
-                    IWebElement button = registrationButtons[i];
-                    IWebElement vacancy = registrationVacancies[i];
-
-                    // Check if the vacancy does not contain "Zapisy na listę rezerwową"
-                    if (!vacancy.Text.Contains("Zapisy na listę rezerwową"))
+                    for (int i = 0; i < registrationButtons.Count; i++)
                     {
-                        // Wait until the button is visible and clickable
-                        wait.Until(driver => button.Displayed && button.Enabled);
+                        try
+                        {
+                            // Re-locate elements to avoid stale references
+                            IWebElement button = registrationButtons[i];
+                            IWebElement vacancy = registrationVacancies[i];
 
-                        // Click the button
-                        button.Click();
-                        break; // Exit the loop after finding the first available date
+                            // Check if the vacancy does not contain "Zapisy na listę rezerwową"
+                            if (!vacancy.Text.Contains("Zapisy na listę rezerwową"))
+                            {
+                                // Wait until the button is visible and clickable
+                                wait.Until(d => button.Displayed && button.Enabled);
+
+                                // Click the button
+                                button.Click();
+                                return; // Exit after successfully clicking
+                            }
+                        }
+                        catch (StaleElementReferenceException)
+                        {
+                            // Relocate the elements and retry
+                            Console.WriteLine("Stale element detected. Retrying...");
+                            break; // Break out of the loop to retry locating elements
+                        }
                     }
-
-                    // Re-find the elements in case the DOM has changed after clicking
-                    registrationButtons = driver.FindElements(registrationButtonsLoc).ToList();
-                    registrationVacancies = driver.FindElements(registrationVacanciesLoc).ToList();
                 }
             }
             catch (WebDriverTimeoutException e)
@@ -100,6 +108,7 @@ namespace GiganciProgramowaniaTest.Pages
                 Console.WriteLine($"Timeout waiting for elements: {e.Message}");
             }
         }
+
 
 
     }

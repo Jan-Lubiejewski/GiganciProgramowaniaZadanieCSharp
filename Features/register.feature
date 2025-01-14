@@ -9,38 +9,38 @@ Feature: Registration Form
   Then Customer remains at first step of registration form
   # Then Red colored alert appears with following text 'Prosimy uzupełnić wszystkie wymagane pola.'
 
-  Scenario: Verify e-mail format
-   Given I am on the first step of the Registration Form
-   Then I fill email input with 'user#example.com'
-   Then I submit the form by clicking 'Dalej' button once.
-   Then Validation message 'Nieprawidłowy adres e-mail' displays under 'Adres e-mail' input.
-   And Form has not been submitted
-   And Customer remains at first step of registration form
+ Scenario: Verify e-mail format
+  Given I am on the first step of the Registration Form
+  Then I fill email input with 'user#example.com'
+  Then I submit the form by clicking 'Dalej' button once.
+  Then Validation message 'Nieprawidłowy adres e-mail' displays under 'Adres e-mail' input.
+  And Form has not been submitted
+  And Customer remains at first step of registration form
    # And Red colored alert appears with following text 'Prosimy uzupełnić wszystkie wymagane pola.'
 
-  Scenario: Verify phone format
-   Given I am on the first step of the Registration Form
-   Then I fill phone number input with '12345665'
-   Then I submit the form by clicking 'Dalej' button once.
-   Then Validation message 'Niepoprawny numer telefonu.' displays under 'Numer kontaktowy' input.
-   And Form has not been submitted
-   And Customer remains at first step of registration form
+ Scenario: Verify phone format
+  Given I am on the first step of the Registration Form
+  Then I fill phone number input with '12345665'
+  Then I submit the form by clicking 'Dalej' button once.
+  Then Validation message 'Niepoprawny numer telefonu.' displays under 'Numer kontaktowy' input.
+  And Form has not been submitted
+  And Customer remains at first step of registration form
    #And Red colored alert appears with following text 'Prosimy uzupełnić wszystkie wymagane pola.'
 
-  Scenario: Verify correct first step from submission with correct data
-   Given I am on the first step of the Registration Form
-   Then I fill imie opiekuna input with 'Artur'
-   Then I fill email input with 'karolgiganci+fakedata80696@gmail.com'
-   Then I fill phone number input with '123456651'
-   Then I fill year of birth input with '2005'
-   Then I click Statute Agreement checkbox
-   Then I click Advertisement Agreement checkbox
-   Then I submit the form by clicking 'Dalej' button once.
-   And Customer moves to second step of registration form
-   And In the navigation first step gets completed and its icon turns into tick icon
-   And In the navigation second step is displayed as active
+ Scenario: Verify correct first step from submission with correct data
+  Given I am on the first step of the Registration Form
+  Then I fill imie opiekuna input with 'Artur'
+  Then I fill email input with 'karolgiganci+fakedata80696@gmail.com'
+  Then I fill phone number input with '123456651'
+  Then I fill year of birth input with '2005'
+  Then I click Statute Agreement checkbox
+  Then I click Advertisement Agreement checkbox
+  Then I submit the form by clicking 'Dalej' button once.
+  And Customer moves to second step of registration form
+  And In the navigation first step gets completed and its icon turns into tick icon
+  And In the navigation second step is displayed as active
 
-Scenario: Verify registration flow for online annual courses
+ Scenario: Verify registration flow for online annual courses
   Given I am on the first step of the Registration Form
   Then I fill imie opiekuna input with 'Artur'
   Then I fill email input with 'karolgiganci+fakedata80696@gmail.com'

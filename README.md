@@ -47,7 +47,7 @@ I have based my project on Page Object Model, where each next step in registrati
  ```bash
  > Features/register.feature
  ```
- They are written in plain English which makes it easier for non-technical person to follow on what's happening in the test. I have also chosen this framework in favour of BDD (Behaviour Driven Development). It's also possible to edit some of the values provided in test case by changing the value in quotes ''. It may be especially useful for last test case as the provided test date may result in failed test, if used too many times.
+ They are written in plain English which makes it easier for non-technical person to follow on what's happening in the test. I have also chosen this framework in favour of BDD (Behaviour Driven Development). It's also possible to edit some of the values provided in test case by changing the value in quotes ''. It may be especially useful for last test case as the provided test date may result in failed test, if used too many times. Changing e-mail alone should help.
  
 The step definition appear in file:
  

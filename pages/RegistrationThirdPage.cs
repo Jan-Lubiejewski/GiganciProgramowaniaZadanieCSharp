@@ -6,6 +6,7 @@ namespace GiganciProgramowaniaTest.Pages
 {
     public class RegistrationThirdPage
     {
+        // Locators
         private By buttonPierwszeKrokiWProgramowniuLoc = By.Name("registration-step-select-course-1092");
         public void ClickOnWybierzPierwszeKrokiWProgramowaniu()
         {
@@ -27,9 +28,6 @@ namespace GiganciProgramowaniaTest.Pages
 
                 // Click the button
                 wybierzButton.Click();
-
-                // Refind element if the page has changed (to avoid stale element reference)
-                wait.Until(d => d.FindElement(buttonPierwszeKrokiWProgramowniuLoc).Displayed);
             }
             catch (WebDriverTimeoutException e)
             {

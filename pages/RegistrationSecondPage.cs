@@ -13,6 +13,7 @@ namespace GiganciProgramowaniaTest.Pages
         private By onlineButtonLoc = By.XPath("//button[text()='Online']");
         private By courseTypeLoc = By.ClassName("sub-kind-selector--button");
 
+        // Clicks 'Roczne kursy z Programowania' course type button
         public void ClickRoczneKursyZProgramowania()
         {
             IWebDriver driver = Drive.GetDriver();
@@ -28,7 +29,7 @@ namespace GiganciProgramowaniaTest.Pages
                     {
                         return elements;
                     }
-                    throw new NoSuchElementException("No buttons found for the 'Roczne Kursy Z Programowania'.");
+                    throw new NoSuchElementException("No buttons found for the courseType.");
                 });
 
                 // First button is Roczne Kursy Z Programowania
@@ -46,7 +47,7 @@ namespace GiganciProgramowaniaTest.Pages
             }
         }
 
-
+        // Clicks 'Online' button
         public void ClickOnline()
         {
             IWebDriver driver = Drive.GetDriver();
@@ -88,6 +89,7 @@ namespace GiganciProgramowaniaTest.Pages
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             try
             {
+                // Wait until the element is available (displayed)
                 wait.Until(d => d.FindElement(formHeadingLoc).Displayed);
 
                 // Finds the element after the wait
@@ -104,31 +106,31 @@ namespace GiganciProgramowaniaTest.Pages
         public bool IsFirstStepTicked()
         {
             List<IWebElement> steps = Drive.GetDriver().FindElements(stepsLoc).ToList();
-            IWebElement firstStep = steps[0];
+            IWebElement firstStep = steps[0]; // Retrieve first step
 
-            // Retrieves the parent element that contains the information if the step is completed
+            // Retrieve the parent element that contains the information if the step is completed
             IWebElement parentElement = firstStep.FindElement(By.XPath(".."));
-            // Retrieves the child element that contains the tick svg icon
+            // Retrieve the child element that contains the tick svg icon
             IWebElement childElement = firstStep.FindElement(By.TagName("svg"));
 
             string parentClass = parentElement.GetDomAttribute("class");
             string childClass = childElement.GetDomAttribute("class");
 
-            // Checks if the classes of the given elements contain 'Completed' and 'Icon-Tick'
+            // Check if the classes of the given elements contain 'Completed' and 'Icon-Tick'
             return parentClass.Contains("feature_registration-menu__item--completed") && childClass.Contains("icon-tick");
         }
 
         public bool IsSecondStepActive()
         {
             List<IWebElement> steps = Drive.GetDriver().FindElements(stepsLoc).ToList();
-            IWebElement secondStep = steps[1];
+            IWebElement secondStep = steps[1]; // Retrieve the second step
 
-            // Retrieves parent element that contains class info if the class is active
+            // Retrieve parent element that contains class info if the class is active
             IWebElement parentElement = secondStep.FindElement(By.XPath(".."));
 
             string parentClass = parentElement.GetDomAttribute("class");
 
-            // Checks if the class of the element contains 'Active'
+            // Check if the class of the element contains 'Active'
             return parentClass.Contains("feature_registration-menu__item--active");
         }
     }

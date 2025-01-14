@@ -7,14 +7,13 @@ namespace Utilities
     [Binding]
     public class Hooks
     {
-        private IWebDriver? driver; // Declare the driver as nullable
+        private IWebDriver? driver;
 
         // Runs before each scenario, sets up the driver and visits the URL
         [BeforeScenario]
         public void SetUp()
         {
-            // Correctly use the static method from Driver.cs to get the driver instance
-            driver = Drive.GetDriver();  // Corrected call to the static method
+            driver = Drive.GetDriver();
             driver.Navigate().GoToUrl("https://devtest.giganciprogramowania.edu.pl/zapisz-sie");
         }
 
@@ -39,7 +38,7 @@ namespace Utilities
             }
         }
 
-        // Expose WebDriver to Step Definitions if necessary
+        // Expose WebDriver to Step Definition if needed
         public IWebDriver Driver => driver!;
     }
 }

@@ -22,12 +22,11 @@ namespace GiganciProgramowaniaTest.Pages
         private By alertMessageLoc = By.XPath("//h4[@class='alert-heading']");
         private By dalejButtonLoc = By.Id("agreement-step-submit");
 
-        // Constructor to initialize the web elements manually
-
         // Check if the advertisement agreed checkbox is selected
         public void CheckAdvertisementAgreed()
         {
             IWebElement advertisementAgreed = Drive.GetDriver().FindElement(advertisementAgreedLoc);
+            // Execute JS script to click since the Selenium click is intercepted by label
             ((IJavaScriptExecutor)Drive.GetDriver()).ExecuteScript("arguments[0].click();", advertisementAgreed);
         }
 
@@ -35,6 +34,7 @@ namespace GiganciProgramowaniaTest.Pages
         public void CheckStatueAgreedCheckbox()
         {
             IWebElement statueAgreed = Drive.GetDriver().FindElement(statueAgreedLoc);
+            // Execute JS script to click since the Selenium click is intercepted by label
             ((IJavaScriptExecutor)Drive.GetDriver()).ExecuteScript("arguments[0].click();", statueAgreed);
         }
 
@@ -115,6 +115,7 @@ namespace GiganciProgramowaniaTest.Pages
             IWebElement statueAgreedError = Drive.GetDriver().FindElement(statueAgreedErrorLoc);
             IWebElement advertisementAgreedError = Drive.GetDriver().FindElement(advertisementAgreedErrorLoc);
 
+            // Create list of errorMessages
             var errorMessages = new List<IWebElement>
             {
                 parentNameError,
@@ -125,8 +126,10 @@ namespace GiganciProgramowaniaTest.Pages
                 advertisementAgreedError
             };
 
+            // Iterate trough list of errorMessage and check if any of them doesn't appear
             foreach (var errorMessage in errorMessages)
             {
+                // Error message differ between regular input and checkbox, therefore there are two Equals checks
                 if (!errorMessage.Displayed || 
                     !(errorMessage.Text.Equals("Pole jest wymagane") || errorMessage.Text.Equals("To pole jest wymagane")))
                 {
@@ -136,8 +139,7 @@ namespace GiganciProgramowaniaTest.Pages
 
             return true;
         }
-
-        // Click the "Dalej" button (next)
+        // Clicks 'Dalej' button
         public void ClickDalej()
         {
             IWebElement dalejButton = Drive.GetDriver().FindElement(dalejButtonLoc);

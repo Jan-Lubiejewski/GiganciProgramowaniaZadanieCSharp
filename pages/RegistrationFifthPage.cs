@@ -6,6 +6,7 @@ namespace GiganciProgramowaniaTest.Pages
 {
     public class RegistrationFifthPage
     {
+        // Locators
         private By agreementHeadingLoc = By.XPath("//div[@class='registration-form-agreement-content-thanks mb-24']/span");
         private By stepsLoc = By.ClassName("feature_registration-menu__item-icon");
 
@@ -34,9 +35,9 @@ namespace GiganciProgramowaniaTest.Pages
                 {
                     IWebElement firstStep = steps[i];
 
-                    // Retrieves the parent element that contains information about whether the step is completed
+                    // Retrieve the parent element that contains information about whether the step is completed
                     IWebElement parentElement = firstStep.FindElement(By.XPath(".."));
-                    // Retrieves the child element (SVG icon)
+                    // Retrieve the child element that contains the tick svg icon
                     IWebElement childElement = firstStep.FindElement(By.TagName("svg"));
 
                     if (parentElement == null || childElement == null)
